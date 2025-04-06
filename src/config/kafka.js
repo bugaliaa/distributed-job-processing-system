@@ -1,6 +1,6 @@
-import Kafka from 'kafkajs';
+const { Kafka } = require('kafkajs');
 
-export const kafka = new Kafka({
+const kafka = new Kafka({
     clientId: process.env.KAFKA_CLIENT_ID,
     brokers: process.env.KAFKA_BROKERS.split(','),
     retry: {
@@ -9,5 +9,11 @@ export const kafka = new Kafka({
     }
 });
 
-export const producer = kafka.producer();
-export const consumer = kafka.consumer({ groupId: `${process.env.KAFKA_CLIENT_ID}-group` });
+const producer = kafka.producer();
+const consumer = kafka.consumer({ groupId: `${process.env.KAFKA_CLIENT_ID}-group` });
+
+module.exports = {
+    kafka,
+    producer,
+    consumer,
+};

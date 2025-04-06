@@ -1,7 +1,7 @@
-import mongoose from 'mongoose';
-import logger from '../utils/logger.js';
+const mongoose = require('mongoose');
+const logger = require('../utils/logger');
 
-export const connectDB = async () => {
+const connectDB = async () => {
     try {
         await mongoose.connect(process.env.MONGO_URI, {
             serverSelectionTimeoutMS: 5000,
@@ -15,10 +15,12 @@ export const connectDB = async () => {
     }
 };
 
-mongoose.connect.on('disconnected', () => {
+mongoose.connection.on('disconnected', () => {
     logger.warn('MongoDB disconnected');
 });
 
 mongoose.connection.on('reconnected', () => {
     logger.info('MongoDB reconnected');
 });
+
+module.exports = connectDB;

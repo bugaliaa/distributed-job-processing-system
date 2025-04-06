@@ -1,6 +1,6 @@
-import { createLogger, format, transports } from 'winston';
-import { combine, timestamp, printf, colorize, errors, json } from 'winston.format';
-import path from 'path';
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, printf, colorize, errors, json } = format;
+const path = require('path');
 
 const consoleFormat = printf(({ level, message, timestamp, stack }) => {
     let log = `${timestamp} ${level}: ${message}`;
@@ -25,7 +25,7 @@ const fileFormat = printf(({ level, message, timestamp, stack, ...metadata }) =>
     return JSON.stringify(log);
 });
 
-export const logger = createLogger({
+const logger = createLogger({
     level: process.env.LOG_LEVEL || 'info',
     defaultMeta: { service: 'job-processor' },
     format: combine(
@@ -65,3 +65,5 @@ process.on('uncaughtException', (error) => {
     logger.error('Uncaught Exception thrown:', error);
     process.exit(1);
 });
+
+module.exports = logger;
