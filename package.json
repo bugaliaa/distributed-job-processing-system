@@ -24,7 +24,9 @@
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
-    "eslint": "^8.23.0",
+    "@eslint/js": "^9.24.0",
+    "eslint": "^8.57.1",
+    "globals": "^16.0.0",
     "nodemon": "^2.0.20"
   }
 }
