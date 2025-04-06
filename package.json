@@ -15,6 +15,7 @@
     "mongoose": "^8.0.0",
     "kafkajs": "^2.2.0",
     "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1",
     "http-errors": "^2.0.0",
     "cors": "^2.8.5",
     "helmet": "^6.0.1",
