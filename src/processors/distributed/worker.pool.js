@@ -91,3 +91,5 @@ class WorkerPool {
         await Promise.all(this.workers.map(worker => worker.terminate()));
     }
 }
+
+module.exports = WorkerPool;
